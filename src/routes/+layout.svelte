@@ -286,7 +286,7 @@
 	<!-- sidebar -->
 	<div class="sidebar">
 		<ul class="sidebar-nav">
-			<li class="sidebar-nav-item">
+			<!-- <li class="sidebar-nav-item">
 				<a href={null} class="sidebar-nav-link">
 					<div>
 						
@@ -296,8 +296,18 @@
 						Dashboard
 					</span>
 				</a>
+			</li> -->
+			{#each sidebars as sidebar}
+			<li class="sidebar-nav-item" on:click={() => sidebarClick(sidebar.id)}>
+				<a href={sidebar.route} class="sidebar-nav-link" class:active="{sidebar.active}">
+					<div>
+						<i class="fab"><Fa icon={sidebar.icon} /></i>
+					</div>
+					<span>{sidebar.name}</span>
+				</a>
 			</li>
-			<li class="sidebar-nav-item">
+			{/each}
+			<!-- <li class="sidebar-nav-item">
 				<a href={null} class="sidebar-nav-link active">
 					<div>
 						
@@ -305,8 +315,8 @@
 					</div>
 					<span>Lorem</span>
 				</a>
-			</li>
-			<li  class="sidebar-nav-item">
+			</li> -->
+			<!-- <li  class="sidebar-nav-item">
 				<a href={null} class="sidebar-nav-link">
 					<div>
 						
@@ -386,7 +396,7 @@
 					</div>
 					<span>Pellentesque</span>
 				</a>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 	<!-- end sidebar -->
@@ -417,6 +427,20 @@
 	let notificationShow = false;
 	let userMenuShow = false;
 
+	let sidebars = [
+		{id: 1, name: 'Dashboard',icon: faTachometerAlt, route: "/", active: true},
+		{id: 2, name: 'Lorem', icon: faMailReplyAll, route: "/about", active: false},
+		{id: 3, name: 'Morbi', icon: faTasks, route: "/about", active: false},
+		{id: 4, name: 'Praesent', icon: faSpinner, route: "/about", active: false},
+		{id: 5, name: 'Pellentesque', icon: faCircleCheck, route: "/about", active: false},
+		{id: 6, name: 'Morbi', icon: faBug, route: "/about", active: false},
+		{id: 7, name: 'Praesent', icon: faChartLine, route: "/about", active: false},
+		{id: 8, name: 'Pellentesque', icon: faBookOpen, route: "/about", active: false},
+		{id: 9, name: 'Morbi', icon: faAdjust, route: "/about", active: false},
+		{id: 10, name: 'Praesent', icon: faGlassCheers, route: "/about", active: false},
+		{id: 11, name: 'Pellentesque', icon: faAudioDescription, route: "/about", active: false},
+  	];
+
 	// const body = document.getElementsByTagName('body')[0]
 	function collapseSidebar() {
 		navMin = !navMin;
@@ -436,6 +460,20 @@
 
 	function clickUserMenu() {
 		userMenuShow = !userMenuShow;
+	}
+
+	/**
+	* @param {number} id
+	*/
+	function sidebarClick(id) {
+		console.log(id);
+		for(let i = 0; i < sidebars.length; i++) {
+			if (sidebars[i].id == id) {
+				sidebars[i].active = true;
+			} else {
+				sidebars[i].active = false;
+			}
+		}
 	}
 	
 </script>
