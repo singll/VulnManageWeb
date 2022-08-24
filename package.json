@@ -13,11 +13,14 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@fortawesome/free-brands-svg-icons": "^6.1.2",
+		"@fortawesome/free-solid-svg-icons": "^6.1.2",
 		"@mdi/js": "^7.0.96",
 		"@smui/button": "^6.0.0",
 		"@smui/card": "^6.0.0",
 		"@smui/checkbox": "^6.1.0",
 		"@smui/form-field": "^6.1.0",
+		"@smui/menu": "^6.1.0",
 		"@smui/top-app-bar": "^6.0.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
@@ -25,6 +28,7 @@
 		"smui-theme": "^6.0.0",
 		"svelte": "^3.46.0",
 		"svelte-check": "^2.7.1",
+		"svelte-fa": "^3.0.3",
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
