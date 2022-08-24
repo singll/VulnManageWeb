@@ -41,184 +41,24 @@
 						</span>
 					</div>
 					<div class="dropdown-menu-content overlay-scrollbar scrollbar-hover">
+						{#each notifications as notification}
 						<li class="dropdown-menu-item">
 							<a href={null} class="dropdown-menu-link">
 								<div>
 									
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
+									<i class="fas fa-gift"><Fa icon={notification.icon} /></i>
 								</div>
 								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+									{notification.title}
 									<br>
 									<span>
-										15/07/2020
+										{notification.date}
 									</span>
 								</span>
 							</a>
 						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-gift"><Fa icon={faGift} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
-						<li class="dropdown-menu-item">
-							<a href={null} class="dropdown-menu-link">
-								<div>
-									
-									<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-								</div>
-								<span>
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-									<br>
-									<span>
-										15/07/2020
-									</span>
-								</span>
-							</a>
-						</li>
+						{/each}
+						
 					</div>
 					<div class="dropdown-menu-footer">
 						<span>
@@ -286,17 +126,6 @@
 	<!-- sidebar -->
 	<div class="sidebar">
 		<ul class="sidebar-nav">
-			<!-- <li class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-tachometer-alt"><Fa icon={faTachometerAlt} /></i>
-					</div>
-					<span>
-						Dashboard
-					</span>
-				</a>
-			</li> -->
 			{#each sidebars as sidebar}
 			<li class="sidebar-nav-item" on:click={() => sidebarClick(sidebar.id)}>
 				<a href={sidebar.route} class="sidebar-nav-link" class:active="{sidebar.active}">
@@ -307,96 +136,6 @@
 				</a>
 			</li>
 			{/each}
-			<!-- <li class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link active">
-					<div>
-						
-						<i class="fab fa-accusoft"><Fa icon={faMailReplyAll} /></i>
-					</div>
-					<span>Lorem</span>
-				</a>
-			</li> -->
-			<!-- <li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-tasks"><Fa icon={faTasks} /></i>
-					</div>
-					<span>Morbi</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-spinner"><Fa icon={faSpinner} /></i>
-					</div>
-					<span>Praesent</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-check-circle"><Fa icon={faCircleCheck} /></i>
-					</div>
-					<span>Pellentesque</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-bug"><Fa icon={faBug} /></i>
-					</div>
-					<span>Morbi</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-chart-line"><Fa icon={faChartLine} /></i>
-					</div>
-					<span>Praesent</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-book-open"><Fa icon={faBookOpen} /></i>
-					</div>
-					<span>Pellentesque</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-adjust"><Fa icon={faAdjust} /></i>
-					</div>
-					<span>Morbi</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fab fa-algolia"><Fa icon={faGlassCheers} /></i>
-					</div>
-					<span>Praesent</span>
-				</a>
-			</li>
-			<li  class="sidebar-nav-item">
-				<a href={null} class="sidebar-nav-link">
-					<div>
-						
-						<i class="fas fa-audio-description"><Fa icon={faAudioDescription} /></i>
-					</div>
-					<span>Pellentesque</span>
-				</a>
-			</li> -->
 		</ul>
 	</div>
 	<!-- end sidebar -->
@@ -440,6 +179,20 @@
 		{id: 10, name: 'Praesent', icon: faGlassCheers, route: "/about", active: false},
 		{id: 11, name: 'Pellentesque', icon: faAudioDescription, route: "/about", active: false},
   	];
+
+	let notifications = [
+		{id: 1, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020',icon: faGift},
+		{id: 2, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faTasks},
+		{id: 3, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faGift},
+		{id: 4, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faTasks},
+		{id: 5, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faGift},
+		{id: 6, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faTasks},
+		{id: 7, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faGift},
+		{id: 8, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faTasks},
+		{id: 9, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faGift},
+		{id: 10, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faTasks},
+		{id: 11, title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', date: '15/07/2020', icon: faGift},
+    ];
 
 	// const body = document.getElementsByTagName('body')[0]
 	function collapseSidebar() {
