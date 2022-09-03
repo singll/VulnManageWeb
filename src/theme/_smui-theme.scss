@@ -1,3 +1,4 @@
+@use './atomclass.scss';
 @use '../app';
 
 :root {
@@ -474,6 +475,8 @@ body {
 	.col-xl-11 {width: 91.66%;}
 	.col-xl-12 {width: 100%;}
 }
+
+
 
 .counter {
 	padding: 16px;
