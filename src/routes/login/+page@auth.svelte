@@ -11,11 +11,28 @@
               </div>
             </div>
             <div class="card-content" >
-              <form class="text-start row">
+              <Snackbar bind:this={snackbarWarning} class="demo-warning">
+                <Label>{snackbarcontent}</Label>
+                <!-- <Actions>
+                  <Button class="material-icons" title="Dismiss">close</Button>
+                </Actions> -->
+              </Snackbar>
+              <form class="text-start row"  target="stop">
+                
+                <div class="capid">
+                  <Textfield 
+                  bind:value={captchaId} 
+                  label="captchaId"
+                  required
+                  >
+                  </Textfield>
+                </div>
+                
                 <Textfield 
                 class="col-12 my-3" 
                 bind:value={username} 
                 label="用户名"
+                required
                 >
                   <!-- <HelperText slot="helper">Helper Text</HelperText> -->
                 </Textfield>
@@ -24,6 +41,7 @@
                 class="col-12 mb-3" 
                 bind:value={password} 
                 label="密码"
+                required
                 >
                   <!-- <HelperText slot="helper">Helper Text</HelperText> -->
                 </Textfield>
@@ -33,13 +51,14 @@
                 class="col-6 mb-3" 
                 bind:value={captchacode} 
                 label="验证码"
+                required
                 >
                   <!-- <HelperText slot="helper">Helper Text</HelperText> -->
                 </Textfield>
                 <img class="col-6" src={captcha} alt="captcha" on:click={() => getCaptcha()}>
                 </div>
                 <div class="col-12 text-center">
-                  <Button class="w-100 my-4 mb-2 bg-gradient-primary" on:click={() => console.log("1")}  variant="raised">
+                  <Button class="w-100 my-4 mb-2 bg-gradient-primary" on:click={() => login()}  variant="raised">
                     <Label>Sign in</Label>
                   </Button>
                   <!-- <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button> -->
@@ -47,8 +66,10 @@
                 <p class="col-12 mt-4 text-sm text-center">
                   Don't have an account?
                   <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                  <a href={null} class="text-primary text-gradient font-weight-bold" on:click={()=> getmenu()}>get menu</a>
                 </p>
               </form>
+              <iframe  name="stop" style="display:none;" title="stop"></iframe> 
             </div>
           </div>
         </div>
@@ -151,39 +172,77 @@
 
 
 <script>
-  // import Fa from 'svelte-fa'
-	// import { faTasks, faSpinner, faCheckCircle, faEllipsisH, faFaceAngry, faGift, faGolfBall} from '@fortawesome/free-solid-svg-icons'
+// @ts-nocheck
+
   // import Fab, { Icon, Label } from '@smui/fab';
-  // import Textfield from '@smui/textfield';
   import { onMount } from 'svelte';
   import HelperText from '@smui/textfield/helper-text';
   import Textfield from '@smui/textfield';
   import Button, { Label } from '@smui/button';
-  import auth from '../../apis/auth';
+  import Snackbar, {  Actions } from '@smui/snackbar';
+  import { goto } from '$app/navigation';
+  import auth from '@/apis/auth';
+  import menu from '@/apis/menu';
+  import { token } from '@/store.js';
 
   let username = '';
   let password = '';
+  let captchaId = '';
   let captchacode = '';
   let captcha = '';
 
+  let snackbarWarning = '';
+  let snackbarcontent = '';
+
   async function getCaptcha() {
-		// Make the API Call here
     auth.captcha().then(
-(/** @type {any} */ res) => {
-        console.log(res);
-    //     rules.captcha[1].max = ele.data.captchaLength
-    // rules.captcha[1].min = ele.data.captchaLength
-    // picPath.value = ele.data.picPath
-    // loginFormData.captchaId = ele.data.captchaId
+    (res) => {
       captcha = res.data.data.picPath;
+      captchaId = res.data.data.captchaId;
       }
     )
 	}
+
+  async function login() {
+		if (username=='' || password=='' || captchaId=='' || captchacode=='') {
+      return false;
+    }
+    const values = {
+      'username': username,
+      'password': password,
+      'captcha': captchacode,
+      'captchaId': captchaId,
+    }
+    auth.login({data:values}).then(
+    (/** @type {any} */ res) => {
+        console.log(res);
+        const code = res.data.code;
+        if (code == 0) {
+          snackbarcontent = res.data.msg;
+          snackbarWarning.open();
+          token.set(res.data.data.token);
+          goto('/');
+        } else {
+          snackbarcontent = res.data.msg;
+          snackbarWarning.open();
+        }
+      }
+    )
+	}
+
+  function getmenu() {
+    menu.get().then(
+      res => {
+        console.log(res);
+      }
+    )
+  }
 
   onMount(async () => {
 		// Make the API Call here
     getCaptcha();
 	});
+
 </script>
 <style>
 .maindiv{
@@ -217,7 +276,6 @@
 
 .bg-gradient-primary {
     background-image: linear-gradient(195deg, var(--mdc-protected-button-container-color, var(--mdc-theme-primary, #6200ee)) 0%,  var(--mdc-protected-button-container-color, var(--mdc-theme-primary, #6200ee)) 100%);
-    /* background-color: var(--mdc-protected-button-container-color, var(--mdc-theme-primary, #6200ee)); */
 }
 
 .shadow-primary {
@@ -235,4 +293,10 @@
 .font-weight-bolder {
   font-weight: 700 !important;
 }
+
+.capid {
+  display: none;
+}
+
+
 </style>
